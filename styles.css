@@ -13,6 +13,7 @@
     margin: 0;
     padding: 0;
     border: 0;
+    box-sizing: border-box;
 }
 body {
     font-family: 'Poppins', sans-serif;
@@ -28,6 +29,22 @@ main {
     transition: background-color .5s ease-in-out, color .5s ease-in-out;
 }
 
+.dark {
+    --background-color: #282a36;
+    --color-text: #fff;
+    color: var(--color-text);
+    background: var(--background-color);
+    transition: background-color .5s ease-in-out, color .5s ease-in-out;
+}
+
+/* #darkmodeToggle {
+    display: none;
+}
+.darkmodeLabel {
+    cursor: pointer;
+}
+
+
 
 #darkmodeToggle:checked + main {
     --background-color: #282a36;
@@ -37,23 +54,44 @@ main {
     transition: background-color .5s ease-in-out, color .5s ease-in-out;
 }
 
-#darkmodeToggle:checked + main .darkmodeLabel:after{
+ #darkmodeToggle:checked + main .darkmodeLabel:after {
     content: " On";
-}
-
-#darkmodeToggle {
-    display: none;
-}
-
-
-.darkmodeLabel {
-    cursor: pointer;
+    background-color: var(--color-green);
 }
 
 .darkmodeLabel:after {
     content: " Off";
+    border: none;
+}  */
+
+/* Toggle darkMode */
+.darkMode {
+    border: 1px solid #333;
+    border-radius: 22px;
+    background-color: #c1c1c1;
+    width: 70px;
+    height: 35px;
+    display: inline-block;
+    padding: 3px;
 }
 
+.dark-mode-on {
+    border: 1px solid #fff;
+    background-color: var(--color-green);
+}
+
+.darkMode .dark-mode-circle {
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+ .circle-right {
+    transform: translateX(32px);
+    background-color: #aaaaaa !important;
+} 
 
 .aboutRocketseat {
     margin-left: 40%;
