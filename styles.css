@@ -4,6 +4,8 @@
 :root {
     /* To create a variable */
     --color-green: #50fa7b;
+    --background-color: #f2f2f2;
+    --color-text: #000;
 }
 
 /* Remove the agent stylesheet of navegator */
@@ -13,10 +15,43 @@
     border: 0;
 }
 body {
-    background: #282a36;
     font-family: 'Poppins', sans-serif;
-    color: white;
     margin: 0;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    color: var(--color-text);
+    background: var(--background-color);
+    transition: background-color .5s ease-in-out, color .5s ease-in-out;
+}
+
+
+#darkmodeToggle:checked + main {
+    --background-color: #282a36;
+    --color-text: #fff;
+    color: var(--color-text);
+    background: var(--background-color);
+    transition: background-color .5s ease-in-out, color .5s ease-in-out;
+}
+
+#darkmodeToggle:checked + main .darkmodeLabel:after{
+    content: " On";
+}
+
+#darkmodeToggle {
+    display: none;
+}
+
+
+.darkmodeLabel {
+    cursor: pointer;
+}
+
+.darkmodeLabel:after {
+    content: " Off";
 }
 
 
@@ -54,7 +89,17 @@ header div {
 }
 
 .links a {
-    color: white;
+    color: var(--color-text);
+    font-size: 20px;
+    line-height: 30px;
+    margin: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.links label {
+    color: var(--color-text);
     font-size: 20px;
     line-height: 30px;
     margin: 15px 15px;
@@ -142,6 +187,7 @@ header div {
     font-size: 40px;
     line-height: 50px;
     font-weight: bold;
+    color: var(--color-text);
 }
 
 #container{
@@ -157,6 +203,7 @@ header div {
     font-size: 20px;
     font-weight: normal;
     margin-top: 10px;
+    color: var(--color-text);
     opacity: 0.8;
 }
 
@@ -172,12 +219,13 @@ header div {
     font-size: 25px;
     font-weight: bold;
     max-width: 300px;
+    color: var(--color-text);
     margin: 20px auto;
 }
 
 #wrapper a {
     text-decoration: none;
-    color: white;
+    color: var(--color-text);
 }
 
 #links-footer{
@@ -188,33 +236,77 @@ header div {
     border-bottom: 1px solid var(--color-green);
 }
 
-.anime-top {
+/* ---- ANIMAÇÃO ---- */
+
+[data-anime] {
     opacity: 0;
-    transform: translate3d(0,-200px,0);
-    transition: 3s;
-  }
-  
-  .anime-bottom {
-    opacity: 0;
-    transform: translate3d(0,200px,0);
-    transition: 3s;
-  }
-  
-  .anime-right {
-    opacity: 0;
-    transform: translate3d(200px,0,0);
-    transition: 2s;
-  }
-  
-  .anime-left {
-    opacity: 0;
-    transform: translate3d(-200px,0,0);
-    transition: 2s;
-  }
-  
-  .anime-start {
+    transition: .3s;
+}
+
+[data-anime="left"] {
+    transform: translate3d(-100px,0,0);
+}
+
+[data-anime="right"] {
+    transform: translate3d(100px,0,0);
+}
+
+[data-anime].animate {
     opacity: 1;
-    transform: translate3d(0,0,0);
-  }
+    transform: translate3d(0px, 0px, 0px);
+}
 
+/* Animation */
+.anime-left {
+    animation-name: left;
+/* Para terminar a animação no to */
+    animation-fill-mode: forwards;
+    animation-duration: 800ms;
+    animation-timing-function: ease-in-out;
+}
 
+.anime-right {
+    animation-name: right;
+    /* Para terminar a animação no to */
+    animation-fill-mode: forwards;
+    animation-duration: 800ms;
+    animation-timing-function: ease-in-out;
+}
+
+.anime-up {
+    animation-name: up;
+    /* Para terminar a animação no to */
+    animation-fill-mode: forwards;
+    animation-duration: 800ms;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes up {
+    from{
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes left {
+    from{
+        opacity: 0;
+        transform: translate3d(-50px,0,0);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes right {
+    from{
+        opacity: 0;
+        transform: translate3d(50px,0,0);
+    }
+    to {
+        opacity: 1;
+    }
+}
